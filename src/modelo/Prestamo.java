@@ -7,8 +7,8 @@ public class Prestamo {
 	//atributos
 
 	private int id; 
-	private int idLibro; 
-	private int idUsuario; 
+	private Libro libro; 
+	private Usuario usuario; 
 	private Date fechaIni; 
 	private Date fechaFin;
 	private boolean entregado;
@@ -27,29 +27,30 @@ public class Prestamo {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
-	 * @return the id_libro
+	 * @return the libro
 	 */
-	public int getId_libro() {
-		return idLibro;
+	public Libro getLibro() {
+		return libro;
 	}
 	/**
-	 * @param id_libro the id_libro to set
+	 * @param libro the libro to set
 	 */
-	public void setId_libro(int id_libro) {
-		this.idLibro = id_libro;
+	public void setLibro(Libro libro) {
+		this.libro = libro;
 	}
 	/**
-	 * @return the id_usuario
+	 * @return the usuario
 	 */
-	public int getId_usuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 	/**
-	 * @param id_usuario the id_usuario to set
+	 * @param usuario the usuario to set
 	 */
-	public void setId_usuario(int id_usuario) {
-		this.idUsuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	/**
 	 * @return the fechaIni

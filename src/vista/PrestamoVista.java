@@ -1,7 +1,9 @@
 package vista;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -20,6 +22,7 @@ public class PrestamoVista extends Conector{
 	
 	final static int PRESTAR = 1; 
 	final static int ENTREGAR = 2; 
+	final static int LISTAR = 	3; 
 	final static int SALIR = 0; 
 
 		public void menuPrestamo(){
@@ -31,6 +34,7 @@ public class PrestamoVista extends Conector{
 				System.out.println("--------PRESTAMOS-----------");
 				System.out.println(PRESTAR + " tomar por prestado un libro"); 
 				System.out.println(ENTREGAR + " entregar un libro "); 
+				System.out.println(LISTAR + " listar prestamos");
 				
 				opcion = Integer.parseInt(lector.nextLine()); 
 				
@@ -44,6 +48,12 @@ public class PrestamoVista extends Conector{
 				case ENTREGAR: 
 					
 					entregarLibro(lector); 
+					break; 
+					
+				case LISTAR: 
+					PrestamoModelo prestamoModelo = new PrestamoModelo(); 
+					ArrayList<Prestamo> prestamos = prestamoModelo.selectAll(); 
+					listarPrestamo(prestamos); 
 					break; 
 					
 				case SALIR:
@@ -88,11 +98,12 @@ public class PrestamoVista extends Conector{
 				//crear el objeto prestamo
 				Prestamo prestamo = new Prestamo(); 
 				
+				
 				//insertar todos los dtaos en prestamo
 				
 				
-				prestamo.setId_libro(libro.getId()); 
-				prestamo.setId_usuario(usuario.getId());
+				prestamo.setLibro(libroModelo.select(libro.getId())); 
+				prestamo.setUsuario(usuarioModelo.select(usuario.getId()));
 				prestamo.setFechaIni(fechaIni);
 				prestamo.setFechaFin(fechaFin);
 				prestamo.setEntregado(false);				
@@ -148,5 +159,16 @@ public class PrestamoVista extends Conector{
 			System.out.println("El libro " + libro.getTitulo() + " ha sido entregado ");
 			
 			
+		}
+		
+		public void listarPrestamo(ArrayList<Prestamo> prestamos){
+			//recorrer el array y listar los prestamos
+			Iterator<Prestamo> i = prestamos.iterator(); 
+			while(i.hasNext()){
+				Prestamo prestamo = i.next(); 
+				System.out.println(prestamo.getId() + " " + prestamo.getLibro().getId() + " " + prestamo.getUsuario().getId() + " " 
+						+ prestamo.getFechaIni() + " " +  prestamo.getFechaFin() + " " + prestamo.isEntregado() );
+				
+			}
 		}
 }
