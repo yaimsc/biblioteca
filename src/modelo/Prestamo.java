@@ -80,12 +80,14 @@ public class Prestamo {
 	 * @return the entregado
 	 */
 	public boolean isEntregado() {
+		
 		return entregado;
 	}
 	/**
 	 * @param entregado the entregado to set
 	 */
 	public void setEntregado(boolean entregado) {
+		
 		this.entregado = entregado;
 	} 
 	

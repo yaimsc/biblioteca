@@ -68,6 +68,7 @@ public class PrestamoModelo extends Conector {
 		
 		Prestamo prestamo = new Prestamo(); 
 		
+		//cerar modelos de libro y usuario
 		LibroModelo libroModelo = new LibroModelo(); 
 		UsuarioModelo usuarioModelo = new UsuarioModelo(); 
 		
